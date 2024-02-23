@@ -1,0 +1,3 @@
+secrets:
+  discord_token: your_cool_bot_token
+  cat_api: the_cat_api_token
