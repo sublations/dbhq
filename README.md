@@ -62,6 +62,23 @@ To contribute a new command:
 1. Implement the `ICommand` interface in a new class under `src/main/java/dbhq/bot/command/commands`.
 2. Register this new command in the `CommandManager` to make it available for use.
 
+
+## Getting The Cat API key
+
+## Obtaining a Free API Key from TheCatAPI
+
+To use the cat picture feature of DBHQ's Happy Bot, you'll need to obtain a free API key from TheCatAPI. This API provides a wide range of cat images that can be integrated into the bot for generating random cat pictures.
+
+### How to Register for a Free API Key:
+
+1. **Visit TheCatAPI Website**: Go to [TheCatAPI](https://thecatapi.com) in your web browser.
+
+2. **Sign Up**: Click on the **Sign Up** button or link to create a new account. You will be required to provide an email address and create a password.
+
+3. **Get Your API Key**: Once registered, your API key should be sent via email. You will have 10,000 requests a month for their free tier.
+
+4. **Configure Your Bot**: Add the API key to your bot's environment variables as `CAT_API=your_cat_api_key`, replacing `your_cat_api_key` with the API key you obtained.
+
 ## License
 
 DBHQ's Happy Bot is released under the MIT License. See the `LICENSE` file for more details.
