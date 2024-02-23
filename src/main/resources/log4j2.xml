@@ -5,38 +5,51 @@
     </Properties>
 
     <Appenders>
-        <!-- Console Appender -->
+        <!-- Enhanced Console Appender with ANSI color codes for different log levels -->
         <Console name="ConsoleAppender" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
+            <PatternLayout>
+                <Pattern>
+                    %highlight{[%d{yyyy-MM-dd HH:mm:ss}] [%t] [%-5level] %logger{36} - %msg%n}{FATAL=red, ERROR=red, WARN=yellow, INFO=green, DEBUG=blue, TRACE=white}
+                </Pattern>
+            </PatternLayout>
         </Console>
 
-        <!-- File Appender -->
+        <!-- File Appender for uncolored, structured logging -->
         <File name="FileAppender" fileName="${basePath}/app.log" append="true">
-            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%-5level] %logger{36} - %msg%n"/>
+            <PatternLayout>
+                <Pattern>
+                    [%d{yyyy-MM-dd HH:mm:ss}] [%t] [%-5level] %logger{36} - %msg%n
+                </Pattern>
+            </PatternLayout>
         </File>
 
-        <!-- Rolling File Appender -->
+        <!-- Rolling File Appender for archiving logs -->
         <RollingFile name="RollingFileAppender" fileName="${basePath}/app-rolling.log"
-                     filePattern="${basePath}/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
-            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%-5level] %logger{36} - %msg%n"/>
+                     filePattern="${basePath}/%d{yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+            <PatternLayout>
+                <Pattern>
+                    [%d{yyyy-MM-dd HH:mm:ss}] [%t] [%-5level] %logger{36} - %msg%n
+                </Pattern>
+            </PatternLayout>
             <Policies>
-                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
-                <SizeBasedTriggeringPolicy size="10 MB"/>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="10MB"/>
             </Policies>
             <DefaultRolloverStrategy max="20"/>
         </RollingFile>
     </Appenders>
 
     <Loggers>
-        <!-- Application Logger -->
+        <!-- Specific Logger Configuration -->
         <Logger name="dbhq" level="debug" additivity="false">
             <AppenderRef ref="ConsoleAppender"/>
             <AppenderRef ref="RollingFileAppender"/>
         </Logger>
 
-        <!-- Root Logger -->
+        <!-- Root Logger Configuration -->
         <Root level="info">
             <AppenderRef ref="ConsoleAppender"/>
+            <AppenderRef ref="FileAppender"/>
         </Root>
     </Loggers>
 </Configuration>

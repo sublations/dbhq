@@ -1,7 +1,6 @@
 package dbhq;
 
 import dbhq.bot.command.CommandManager;
-import dbhq.bot.config.ConfigManager;
 import dbhq.bot.command.commands.CatPicture;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,7 +19,7 @@ public class Main {
 
     public static void main(String[] args) {
         // Load the Discord bot token from the configuration.
-        String token = ConfigManager.getConfigValue("secrets.discord_token");
+        String token = System.getenv("DISCORD_TOKEN");
         if (token == null || token.isBlank()) {
             logger.error("Discord bot token is not configured. Please check your configuration.");
             return; // Halt execution if the token is missing to prevent runtime errors.

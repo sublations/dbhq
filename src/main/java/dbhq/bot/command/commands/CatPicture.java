@@ -1,7 +1,6 @@
 package dbhq.bot.command.commands;
 
 import dbhq.bot.command.ICommand;
-import dbhq.bot.config.ConfigManager;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -32,7 +31,7 @@ public class CatPicture implements ICommand {
 
         try (CloseableHttpClient httpClient = HttpClients.custom().setDefaultRequestConfig(config).build()) {
             HttpGet request = new HttpGet(CAT_API_URL);
-            String apiKey = ConfigManager.getConfigValue("secrets.cat_api");
+            String apiKey = System.getenv("CAT_API");
             if (apiKey != null) {
                 request.setHeader("x-api-key", apiKey);
             }
