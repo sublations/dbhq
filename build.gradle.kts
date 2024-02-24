@@ -11,7 +11,7 @@ java {
 
 application {
     // Specify the fully qualified name of your main class.
-    mainClass.set("dbhq.Main")
+    mainClass.set("dbhq.Bot")
 }
 
 group = "dbhq"
@@ -26,12 +26,11 @@ dependencies {
     implementation("org.javacord:javacord:3.8.0")
     implementation("org.apache.logging.log4j:log4j-core:2.22.1")
     implementation("org.apache.httpcomponents:httpclient:4.5.14")
-    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.12.3")
     implementation("org.json:json:20231013")
 
     // Test dependencies
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.1")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.1")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.1")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.1")
 }
 
 tasks.test {

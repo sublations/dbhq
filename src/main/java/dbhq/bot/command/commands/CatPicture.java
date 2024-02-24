@@ -15,11 +15,20 @@ import org.json.JSONArray;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * A command that fetches a random cat picture from the Cat API.
+ */
 public class CatPicture implements ICommand {
     private static final Logger logger = LogManager.getLogger(CatPicture.class);
     private static final String CAT_API_URL = "https://api.thecatapi.com/v1/images/search";
     private static final int TIMEOUT = 5000; // milliseconds
 
+    /**
+     * Executes the command logic.
+     *
+     * @param event The message creation event that triggered the command.
+     * @param args  A list of arguments passed to the command. This list excludes the command prefix and the command name itself.
+     */
     @Override
     public void execute(MessageCreateEvent event, List<String> args) {
         // Configure timeout settings for the HTTP client
@@ -29,6 +38,7 @@ public class CatPicture implements ICommand {
                 .setSocketTimeout(TIMEOUT)
                 .build();
 
+        // Fetch a random cat image from the Cat API
         try (CloseableHttpClient httpClient = HttpClients.custom().setDefaultRequestConfig(config).build()) {
             HttpGet request = new HttpGet(CAT_API_URL);
             String apiKey = System.getenv("CAT_API");
